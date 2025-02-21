@@ -9,3 +9,9 @@ html {
 body {
     min-height: 100%;
 }
+
+p {
+    font-family: "Arial Narrow", serif;
+    background-color: #90CAF9;
+    width: 500px;
+}

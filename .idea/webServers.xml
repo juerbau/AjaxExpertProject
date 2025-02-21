@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="112c020e-f90a-4e01-bafa-36807bc7489f" name="AjaxExpertProject" url="http://ajax.localhost">
+        <fileTransfer mountedRoot="C:\Users\JürgenBauer\PhpstormProjects\AjaxExpertProject" accessType="MOUNT" port="0" />
+      </webServer>
+    </option>
+  </component>
+</project>
