@@ -14,4 +14,23 @@ class DogRepository
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    public function addDog($newDog): string {
+        $add = 'insert into dog (name, age, gender, notes) values (:name, :age, :gender, :notes)';
+        $stmt = $this->pdo->prepare($add);
+        $stmt->bindValue(':name', $newDog['name']);
+        $stmt->bindValue(':age', $newDog['age']);
+        $stmt->bindValue(':gender', $newDog['gender']);
+        $stmt->bindValue(':notes', $newDog['notes']);
+        $stmt->execute();
+        return "new Dog was added";
+    }
+
+    public function delete($id): void {
+        $stmt = $this->pdo->prepare('DELETE FROM `dog` WHERE id=:id');
+        $stmt->bindValue(':id', $id);
+        $stmt->execute();
+    }
+
 }
+

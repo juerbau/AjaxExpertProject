@@ -19,12 +19,22 @@ $container->add('dogController', function() use($container){
 
 
 $method = $_SERVER['REQUEST_METHOD'];
+$dogRepository = $container->get('dogRepository');
+
 if ($method == 'GET') {
-    $dogRepository = $container->get('dogRepository');
     $myDogs = $dogRepository->allDogs();
     $res = json_encode($myDogs);
     header('Content-Type: text/html');
     echo $res;
+} elseif ($method == 'POST'){
+    $json = file_get_contents('php://input');
+    $data = json_decode($json, true);
+    $addNewDog = $dogRepository->addDog($data);
+    echo $addNewDog;
+} elseif ($method == 'DELETE'){
+    $id = $_GET['id'];
+    $dogRepository->delete($id);
+    echo "the dog with the id={$id} was deleted";
 }
 
 
