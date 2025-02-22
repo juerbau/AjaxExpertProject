@@ -1,8 +1,8 @@
 
 
-<?php foreach ($products as $product): ?>
+<?php foreach ($dogs as $dog): ?>
 
-    <p>Name: <b><?= e($product["name"]) ?></b> Beschreibung: <?= e($product["description"]) ?></p>
+    <p>ID: <b><?= e($dog["id"]); ?></b> Name: <?= e($dog["name"]); ?></p>
 
 <?php endforeach; ?>
 

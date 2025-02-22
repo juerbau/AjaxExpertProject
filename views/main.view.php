@@ -16,13 +16,13 @@
 
 
 
-        <?php foreach ($products as $product): ?>
+    <?php foreach ($dogs as $dog): ?>
 
-            <p>Name: <b><?= e($product["name"]) ?></b> Beschreibung: <?= e($product["description"]) ?></p>
+        <p>ID: <?= e($dog["id"]); ?> Name:<b> <?= e($dog["name"]); ?></b></p>
 
-        <?php endforeach; ?>
+    <?php endforeach; ?>
 
-        <?php var_dump(__DIR__); ?>
+    <?php var_dump(__DIR__); ?>
 
 <!-- Beispiel für eine Tabelle
         <table>

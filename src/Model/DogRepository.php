@@ -3,12 +3,12 @@
 namespace App\Model;
 use PDO;
 
-class ProductRepository
+class DogRepository
 {
     public function __construct(protected PDO $pdo) {}
 
-    public function allProducts():array{
-        $select = 'SELECT * from product';
+    public function allDogs():array{
+        $select = 'SELECT * from dog';
         $stmt = $this->pdo->prepare($select);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $stmt->execute();

@@ -2,14 +2,14 @@
 
 namespace App\Controller;
 
-use App\Model\ProductRepository;
+use App\Model\DogRepository;
 
-class ProductController{
-    public function __construct(protected ProductRepository $productRepository){}
+class DogController{
+    public function __construct(protected DogRepository $dogRepository){}
 
-    public function showAllProducts(): void {
-        $products = $this->productRepository->allProducts();
-        $this->render('body', ['products' => $products]);
+    public function showAllDogs(): void {
+        $dogs = $this->dogRepository->allDogs();
+        $this->render('body', ['dogs' => $dogs]);
     }
 
     public function render(string $path, array $data): void {

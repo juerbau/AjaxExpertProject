@@ -2,23 +2,29 @@
 
 require __DIR__ . '/inc/all.php';
 
-
 $container = new App\Support\Container();
 
 $container->add('pdo', function() {
     return require __DIR__ . '/inc/db-connect.inc.php';
 });
 
-$container->add('productRepository', function () use($container){
-    return new App\Model\ProductRepository($container->get('pdo'));
+$container->add('dogRepository', function () use($container){
+    return new App\Model\DogRepository($container->get('pdo'));
 });
 
-$container->add('productController', function() use($container){
-    return new App\Controller\ProductController($container->get('productRepository'));
+$container->add('dogController', function() use($container){
+    return new App\Controller\DogController($container->get('dogRepository'));
 });
 
 
-$productController = $container->get('productController');
-$productController->showAllProducts();
+
+$method = $_SERVER['REQUEST_METHOD'];
+if ($method == 'GET') {
+    $dogRepository = $container->get('dogRepository');
+    $myDogs = $dogRepository->allDogs();
+    $res = json_encode($myDogs);
+    header('Content-Type: text/html');
+    echo $res;
+}
 
 
