@@ -17,24 +17,36 @@ $container->add('dogController', function() use($container){
 });
 
 
-
 $method = $_SERVER['REQUEST_METHOD'];
 $dogRepository = $container->get('dogRepository');
 
-if ($method == 'GET') {
-    $myDogs = $dogRepository->allDogs();
-    $res = json_encode($myDogs);
-    header('Content-Type: text/html');
-    echo $res;
-} elseif ($method == 'POST'){
-    $json = file_get_contents('php://input');
-    $data = json_decode($json, true);
-    $addNewDog = $dogRepository->addDog($data);
-    echo $addNewDog;
-} elseif ($method == 'DELETE'){
-    $id = $_GET['id'];
-    $dogRepository->delete($id);
-    echo "the dog with the id={$id} was deleted";
-}
 
+switch ($method){
+    case 'GET':
+        $myDogs = $dogRepository->allDogs();
+        $res = json_encode($myDogs);
+        header('Content-Type: text/html');
+        echo $res;
+        break;
+    case 'POST':
+        $json = file_get_contents('php://input');
+        $data = json_decode($json, true);
+        $addNewDog = $dogRepository->addDog($data);
+        echo $addNewDog;
+        break;
+    case 'PUT':
+        $id = $_GET['id'];
+        $dogRepository->delete($id);
+
+        $json = file_get_contents('php://input');
+        $data = json_decode($json, true);
+        echo "the dog with the id={$id} was modified";
+
+        break;
+    case 'DELETE':
+        $id = $_GET['id'];
+        $dogRepository->delete($id);
+        echo "the dog with the id={$id} was deleted";
+        break;
+}
 
