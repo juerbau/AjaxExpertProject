@@ -15,6 +15,14 @@ class DogRepository
         return $stmt->fetchAll();
     }
 
+    public function oneDog($id):array{
+        $stmt = $this->pdo->prepare('SELECT * from dog WHERE id=:id');
+        $stmt->bindValue(':id', $id);
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
     public function addDog($newDog): string {
         $add = 'insert into dog (name, age, gender, notes) values (:name, :age, :gender, :notes)';
         $stmt = $this->pdo->prepare($add);
