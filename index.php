@@ -37,19 +37,15 @@ if($method == 'GET' && !isset($_GET['id'])) {
     $data = json_decode($json, true);
     $addNewDog = $dogRepository->addDog($data);
     echo $addNewDog;
-}  elseif ($method == 'DELETE'){
+} elseif($method == 'PUT' && isset($_GET['id'])){
+    $id = $_GET['id'];
+    $json = file_get_contents('php://input');
+    $updateDog = json_decode($json, true);
+    $res = $dogRepository->updateDog($id, $updateDog);
+    header('Content-Type: text/html');
+    echo $res;
+}elseif ($method == 'DELETE'){
     $id = $_GET['id'];
     $dogRepository->delete($id);
     echo "the dog with the id={$id} was deleted";
 }
-
-
-
-//elseif ($method == 'PUT') {
-//    $id = $_GET['id'];
-//    $dogRepository->delete($id);
-//
-//    $json = file_get_contents('php://input');
-//    $data = json_decode($json, true);
-//    echo "the dog with the id={$id} was modified";
-//}

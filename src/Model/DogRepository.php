@@ -34,6 +34,18 @@ class DogRepository
         return "new Dog was added";
     }
 
+    public function updateDog($id, $updateDog): string{
+        $stmt = $this->pdo->prepare('UPDATE `dog` SET `name` = :name,
+                 `age` = :age, `gender` = :gender, `notes` = :notes WHERE `id` = :id');
+        $stmt->bindValue(':name', $updateDog['name']);
+        $stmt->bindValue(':age', $updateDog['age']);
+        $stmt->bindValue(':gender', $updateDog['gender']);
+        $stmt->bindValue(':notes', $updateDog['notes']);
+        $stmt->bindValue(':id', $id);
+        $stmt->execute();
+        return "Dog with the ID:{$id} was updated";
+    }
+
     public function delete($id): void {
         $stmt = $this->pdo->prepare('DELETE FROM `dog` WHERE id=:id');
         $stmt->bindValue(':id', $id);
