@@ -32,6 +32,7 @@ if($method == 'GET' && !isset($_GET['id'])) {
     $json = file_get_contents('php://input');
     $data = json_decode($json, true);
     $addNewDog = $dogRepository->addDog($data);
+    header('Content-Type: text/html');
     echo $addNewDog;
 } elseif($method == 'PUT' && isset($_GET['id'])){
     $id = $_GET['id'];
@@ -40,8 +41,9 @@ if($method == 'GET' && !isset($_GET['id'])) {
     $res = $dogRepository->updateDog($id, $updateDog);
     header('Content-Type: text/html');
     echo $res;
-}elseif ($method == 'DELETE'){
+} elseif ($method == 'DELETE'){
     $id = $_GET['id'];
     $dogRepository->delete($id);
+    header('Content-Type: text/html');
     echo "the dog with the id={$id} was deleted";
 }
