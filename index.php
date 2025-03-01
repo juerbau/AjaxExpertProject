@@ -12,10 +12,6 @@ $container->add('dogRepository', function () use($container){
     return new App\Model\DogRepository($container->get('pdo'));
 });
 
-$container->add('dogController', function() use($container){
-    return new App\Controller\DogController($container->get('dogRepository'));
-});
-
 
 $method = $_SERVER['REQUEST_METHOD'];
 $dogRepository = $container->get('dogRepository');

@@ -1,7 +1,0 @@
-POST /server/request_method/api/test?arg1=5&arg2=10 HTTP/1.1
-Host: localhost
-Content-type: text/html
-
-'[{"name": "karl"}, {"name": "fritz"}]'
-
-###
